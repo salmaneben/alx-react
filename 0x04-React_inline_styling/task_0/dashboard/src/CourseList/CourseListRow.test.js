@@ -23,4 +23,14 @@ describe("Testing <CourseListRow />", () => {
     expect(wrapper.find('td').at(0).text()).toEqual('first cell test');
     expect(wrapper.find('td').at(1).text()).toEqual('second cell test');
   });
+
+  it("Component renders with the correct background color for header rows", () => {
+    const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell="test"/>);
+    expect(wrapper.prop('style')).toHaveProperty('backgroundColor', '#deb5b545');
+  });
+
+  it("Component renders with the correct background color for regular rows", () => {
+    const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell="test"/>);
+    expect(wrapper.prop('style')).toHaveProperty('backgroundColor', '#f5f5f5ab');
+  });
 });
