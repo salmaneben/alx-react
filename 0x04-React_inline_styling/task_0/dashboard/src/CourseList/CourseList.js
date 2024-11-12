@@ -1,47 +1,38 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, css } from 'aphrodite';
-import CourseListRow from './CourseListRow';
+import PropType from 'prop-types';
 import CourseShape from './CourseShape';
+import CourseListRow from './CourseListRow';
+import './CourseList.css';
 
-const styles = StyleSheet.create({
-  courseList: {
-    width: '100%',
-    border: '1px solid #ddd',
-    borderCollapse: 'collapse'
-  }
-});
-
-const CourseList = ({ listCourses = [] }) => {
+function CourseList({ listCourses }) {
   return (
-    <table className={css(styles.courseList)}>
+    <table id="CourseList" cellPadding="0" cellSpacing="0">
       <thead>
-        <CourseListRow textFirstCell="Available courses" isHeader={true} />
-        <CourseListRow
-          textFirstCell="Course name"
-          textSecondCell="Credit"
-          isHeader={true}
-        />
+        <CourseListRow isHeader={true} textFirstCell='Available courses' />
+        <CourseListRow isHeader={true} textFirstCell='Course name' textSecondCell="Credit" />
       </thead>
       <tbody>
-        {listCourses.length === 0 ? (
-          <CourseListRow textFirstCell="No course available yet" />
-        ) : (
-          listCourses.map(course => (
-            <CourseListRow
-              key={course.id}
-              textFirstCell={course.name}
-              textSecondCell={course.credit}
-            />
-          ))
-        )}
+        {
+        listCourses.length == 0 ?
+          <CourseListRow isHeader={false} textFirstCell='No course available yet'/>
+        : null
+        }
+        {
+          listCourses.map((val, idx) => {
+            return <CourseListRow isHeader={false} textFirstCell={val.name} textSecondCell={val.credit} key={val.id}/>
+          })
+        }
       </tbody>
     </table>
   );
+}
+
+CourseList.defaultProps = {
+  listCourses: []
 };
 
-CourseList.propTypes = {
-  listCourses: PropTypes.arrayOf(CourseShape)
+CourseList.propType = {
+  listCourses: PropType.arrayOf(CourseShape)
 };
 
 export default CourseList;
