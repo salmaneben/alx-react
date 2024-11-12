@@ -3,30 +3,77 @@ import { StyleSheet, css } from "aphrodite";
 
 function Login() {
   return (
-    <React.Fragment>
-      <div className={css(styles["App-body"])}>
-        <p>Login to access the full dashboard</p>
-        <form>
-          <label htmlFor="email">Email:</label>
-          <input className={css(styles.input)} type="email" name="email"></input>
-          <label htmlFor="password">Password:</label>
-          <input className={css(styles.input)} type="password" name="password"></input>
-          <button>OK</button>
-        </form>
-      </div>
-    </React.Fragment>
+    <div className={css(styles.loginContainer)}>
+      <p className={css(styles.loginParagraph)}>Login to access the full dashboard</p>
+      <form className={css(styles.loginForm)}>
+        <div className={css(styles.inputGroup)}>
+          <label htmlFor="email" className={css(styles.label)}>Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            className={css(styles.input)} 
+          />
+        </div>
+        <div className={css(styles.inputGroup)}>
+          <label htmlFor="password" className={css(styles.label)}>Password:</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            className={css(styles.input)} 
+          />
+        </div>
+        <button className={css(styles.button)}>OK</button>
+      </form>
+    </div>
   );
 }
 
 const styles = StyleSheet.create({
-  "App-body": {
-    fontSize: "1rem",
-    padding: "2em",
-    height: "45%",
+  loginContainer: {
+    padding: "2rem",
+    "@media (max-width: 900px)": {
+      padding: "1rem",
+    },
   },
-
+  loginParagraph: {
+    marginBottom: "1rem",
+  },
+  loginForm: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "1rem",
+    "@media (max-width: 900px)": {
+      flexDirection: "column",
+    },
+  },
+  inputGroup: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    "@media (max-width: 900px)": {
+      flexDirection: "column",
+      alignItems: "flex-start",
+    },
+  },
+  label: {
+    marginRight: "0.5rem",
+  },
   input: {
-    margin: "10px",
+    padding: "0.25rem 0.5rem",
+    border: "1px solid #ccc",
+    borderRadius: "3px",
+  },
+  button: {
+    padding: "0.25rem 1rem",
+    background: "white",
+    border: "1px solid #ccc",
+    borderRadius: "3px",
+    cursor: "pointer",
+    ":hover": {
+      backgroundColor: "#f5f5f5",
+    },
   },
 });
 

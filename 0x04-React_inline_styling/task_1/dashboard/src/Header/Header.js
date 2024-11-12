@@ -4,27 +4,38 @@ import { StyleSheet, css } from "aphrodite";
 
 function Header() {
   return (
-    <>
-      <div className={css(styles["App-header"])}>
-        <img src={logo} className={css(styles.img)} alt="logo" />
-        <h1>School dashboard</h1>
-      </div>
-    </>
+    <header className={css(styles.header)}>
+      <img src={logo} className={css(styles.headerImg)} alt="logo" />
+      <h1 className={css(styles.headerText)}>School dashboard</h1>
+    </header>
   );
 }
 
 const styles = StyleSheet.create({
-  "App-header": {
-    fontSize: "1.4rem",
-    color: "#e0354b",
+  header: {
     display: "flex",
     alignItems: "center",
+    color: "#e0354b",
+    fontSize: "1.4rem",
     borderBottom: "3px solid #e0354b",
+    "@media (max-width: 900px)": {
+      flexDirection: "column",
+      alignItems: "flex-start",
+    },
   },
-
-  img: {
+  headerImg: {
     width: "200px",
     height: "200px",
+    "@media (max-width: 900px)": {
+      width: "150px",
+      height: "150px",
+    },
+  },
+  headerText: {
+    margin: "0",
+    "@media (max-width: 900px)": {
+      marginTop: "1rem",
+    },
   },
 });
 

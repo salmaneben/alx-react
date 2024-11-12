@@ -13,7 +13,6 @@ import { getLatestNotification } from "../utils/utils";
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
@@ -36,6 +35,7 @@ class App extends React.Component {
       this.props.logOut();
     }
   }
+
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress);
   }
@@ -48,7 +48,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <div className={css(styles.App)}>
-          <div className="heading-section">
+          <div className={css(styles.headingSection)}>
             <Notifications listNotifications={this.listNotifications} />
             <Header />
           </div>
@@ -62,12 +62,12 @@ class App extends React.Component {
             </BodySectionWithMarginBottom>
           )}
           <BodySection title="News from the school">
-            <p>
+            <p className={css(styles.bodyParagraph)}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis at tempora odio, necessitatibus repudiandae reiciendis cum nemo sed asperiores ut molestiae eaque aliquam illo ipsa
               iste vero dolor voluptates.
             </p>
           </BodySection>
-          <Footer />
+          <Footer className={css(styles.footer)} />
         </div>
       </React.Fragment>
     );
@@ -80,6 +80,23 @@ const styles = StyleSheet.create({
     maxWidth: "100vw",
     position: "relative",
     fontFamily: "Arial, Helvetica, sans-serif",
+  },
+  headingSection: {
+    display: "flex",
+    justifyContent: "space-between",
+    borderBottom: "3px solid #e0354b",
+  },
+  bodyParagraph: {
+    marginBottom: "2rem",
+  },
+  footer: {
+    borderTop: "3px solid #e0354b",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    position: "fixed",
+    bottom: 0,
+    fontStyle: "italic",
   },
 });
 
